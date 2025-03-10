@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>La SPA - Accueil</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        header {
+            background-color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            margin: 0;
+            color: #333;
+        }
+        nav {
+            background-color: #333;
+            text-align: center;
+            padding: 10px 0;
+        }
+        nav a {
+            text-decoration: none;
+            color: #fff;
+            margin: 0 10px;
+        }
+        nav a:hover {
+            color: #f5f5f5;
+        }
+        img {
+            display: block;
+            margin: 20px auto;
+            border: 5px solid #333;
+            border-radius: 10px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .centre {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>SPA</h1>
+    </header>
+
+    <div class="container">
+        <img src="{{url_for('static', filename='logo.jpeg')}}" alt="Logo SPA" width="250">
+    </div>
+    
+    <nav>
+        <a href="accueil">Accueil</a>
+        <a href="connexion">Connexion</a>
+        <a href="refuges">Refuges</a>
+    </nav>
+
+</body>
+ <p>
+    Les horraires de la SPA sont les suivants : 
+ </p>
+{% for a in (horraires) %}
+<p>
+    {{a}} : {{horraires[a]}}
+</p>
+
+{% endfor %}
+
+{% for i in range (taille) %}
+  <p class="centre">
+        <a href="refuges/{{id[i].id_refuge}}">{{nom[i].nom}} - {{nom[i].adresse}}</a>
+  </p>
+    {% endfor %}
+
+</html>
+

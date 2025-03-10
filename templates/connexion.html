@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>La SPA - Connexion</title>
+    <style>
+        
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        header {
+            background-color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            margin: 0;
+            color: #333;
+        }
+        
+        form {
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: inline;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: calc(100% - 12px);
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #555;
+        }
+
+        input[type="radio"] {
+            padding : 10px ;
+        }
+
+        p{
+            color : red ;
+            font-size: small;
+        }
+        nav {
+            background-color: #333;
+            text-align: center;
+            padding: 10px 0;
+        }
+        nav a {
+            text-decoration: none;
+            color: #fff;
+            margin: 0 10px;
+        }
+        nav a:hover {
+            color: #f5f5f5;
+        }
+        img {
+            display: block;
+            margin: 20px auto;
+            border: 5px solid #333;
+            border-radius: 10px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>SPA</h1>
+    </header>
+
+    <div class="container">
+        <img src="{{url_for('static', filename='logo.jpeg')}}" alt="Logo SPA" width="250">
+    </div>
+    
+    <nav>
+        <a href="accueil">Accueil</a>
+        <a href="connexion">Connexion</a>
+        <a href="refuges">Refuges</a>
+    </nav>
+
+    <header>
+        <h1>Connexion à La SPA</h1>
+    </header>
+
+    <form>
+        {% if erreur %}
+            <p>Les identifients rentrés ne sont pas bon.</p>
+        {% endif%}
+
+        <label for="username">Nom d'utilisateur :</label>
+        <input type="text" id="username" name="username" required>
+
+        <label for="password">Mot de passe :</label>
+        <input type="password" id="password" name="password" required>
+
+        <input type="submit" value="Se connecter">
+    </form>
+
+</body>
+</html>

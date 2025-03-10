@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>La SPA - Accueil</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        header {
+            background-color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            margin: 0;
+            color: #333;
+        }
+        nav {
+            background-color: #333;
+            text-align: center;
+            padding: 10px 0;
+        }
+        nav a {
+            text-decoration: none;
+            color: #fff;
+            margin: 0 10px;
+        }
+        nav a:hover {
+            color: #f5f5f5;
+        }
+        img {
+            display: block;
+            margin: 20px auto;
+            border: 5px solid #333;
+            border-radius: 10px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .image-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 20px;
+        }
+        .image-container img {
+        width: 250;
+        height: auto;
+        margin: 10px;
+        }
+        .image-info {
+        text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>SPA</h1>
+    </header>
+
+    <div class="container">
+        <img src="{{url_for('static', filename='logo.jpeg')}}" alt="Logo SPA" width="250">
+    </div>
+
+    <nav>
+        <a href="../accueil">Accueil</a>
+        <a href="../connexion">Connexion</a>
+        <a href="../refuges">Refuges</a>
+    </nav>
+
+</body>
+<p>
+  <br>Bienvenue sur la page du refuge "{{nom_refuge.nom}}"
+  <br>Numéro : {{num.num_tel}}
+  <br>Adresse : {{adresse_refuge.adresse}}
+  
+</p>
+
+{% if taille_anim == 0 %}
+<br> Il n'y a pas d'animaux à l'adoption
+{% else %}
+Voici la liste des annimaux disponible sur ce refuge : 
+{% for annimal in annimaux %}
+<div class="image-container">
+    <div class="image-info">
+        <img src="{{url_for('static', filename= annimal.image_animal)}}" alt="image de {{annimal.nom}}" width="250">
+        <p>
+            <br>nom  : {{annimal.nom}}
+            <br>age : {{annimal.age}}
+            <br>espece : {{annimal.espece}}
+            <br>sexe : {{annimal.sexe}}
+            <br>signe distinctif : {{annimal.signe_distinctif}}
+            {% if vaccin == None %}
+                <br>vaccins manquant : aucun
+            {% else %}
+                {% if annimal.id_animal in lst_anim %}
+                    {% for vaccin in vaccins %}
+                        {% if annimal.id_animal == vaccin.id_animal %}
+                            <br> vaccin à faire : {{vaccin.type_soin}}
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                    <br> vaccin à faire : aucun
+                {% endif %}
+            {% endif %}
+        </p>
+    </div>
+</div>
+
+
+{% endfor %}
+{% endif %}
+</html>
